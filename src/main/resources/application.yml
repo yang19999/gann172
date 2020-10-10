@@ -1,0 +1,23 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /sbmybatisdemo
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver #如果驱动类报红，将pom.xml中的mysql依赖的scope节点删除即可。
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/gannan17?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+mybatis:
+  type-aliases-package: com.etc.entity          # 注意：对应实体类的路径
+  mapper-locations: classpath:mapper/*.xml    #注意：一定要对应mapper映射xml文件的所在路径
+  #pagehelper分页配置
+pagehelper:
+  helperDialect: mysql
+  #启用合理化，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+

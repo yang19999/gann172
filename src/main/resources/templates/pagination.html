@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="fenpage" th:fragment="pagination">
+    <!-- 以下为公共部分 -->
+    <div style="text-align: center;">
+        每页<select name="pageSize" onchange="this.form.submit()">
+        <option value="5" label="5" th:selected="${p.pageSize==5}"/>
+        <option value="10" label="10" th:selected="${p.pageSize==10}"/>
+        <option value="20" label="20" th:selected="${p.pageSize==20}"/>
+    </select>条
+        <button type="button" th:onclick="goPage(1)" th:disabled="${p.pageNum} <= 1">首页</button>
+        <button type="button" th:onclick="|goPage(${p.prePage})|" th:disabled="${p.pageNum} <= 1">上一页</button>
+        第<input id="pageNum" style="width: 30px" name="pageNum" th:value="${p.pageNum }"/><span th:text=" ${p.pages }"/>页
+        <!--    <button th:each="num:${p.navigatepageNums}" th:text=""></button>-->
+        <button type="button" th:onclick="|goPage(${p.nextPage})|" th:disabled="${p.pageNum} >= ${p.pages}">下一页</button>
+        <button type="button" th:onclick="|goPage(${p.pages})|" th:disabled="${p.pageNum} >= ${p.pages}">末页</button>
+        共<span th:text="${p.total }"/>条
+        <button type="submit">查询</button>
+        <script>
+            function goPage(pageNum) {
+                // 改变页号
+                document.getElementById('pageNum').value = pageNum;
+                // 提交表单
+                document.getElementById('dataForm').submit();
+            }
+        </script>
+    </div>
+</div>
+</body>
+</html>

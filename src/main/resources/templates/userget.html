@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="|${#request.getContextPath()}/|">
+    <meta charset="UTF-8">
+    <title>用户详情</title>
+</head>
+<body>
+    <h3>用户详情</h3>
+    <a href="usertoadd">去新加</a>
+    <a href="queryUser">去查询</a>
+    <div th:text="${#request.getParameter('msg')}" th:if="${#request.getParameter('msg')} != null"></div>
+    <div th:text="${msg}" th:if="${msg} != null">
+    </div>
+    <form action="usermod" method="post">
+        <table>
+            <tr>
+                <td>用户编号:</td>
+                <td><input name="uid" th:value="${c.uid}" readonly></td>
+            </tr>
+            <tr>
+                <td>用户名称:</td>
+                <td><input name="name" th:value="${c.name}"></td>
+            </tr>
+            <tr>
+                <td>用户密码:</td>
+                <td><input name="password" th:value="${c.password}"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="修改">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
